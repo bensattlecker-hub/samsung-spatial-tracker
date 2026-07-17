@@ -101,7 +101,7 @@ st.markdown("""
     }
     
     /* Pill Form Action Action Buttons (White Pill style) */
-    button[kind="primaryFormSubmit"], button[kind="secondary"] {
+    button[kind="primaryFormSubmit"], button[kind="secondary"], .stButton button {
         background-color: #ffffff !important;
         color: #000000 !important;
         border-radius: 100px !important;
@@ -110,6 +110,12 @@ st.markdown("""
         border: none !important;
         padding: 8px 20px !important;
         width: auto !important;
+    }
+    
+    /* FIX: Force Code Box Text to display crisp and bright */
+    code, pre {
+        color: #0099ff !important;
+        background-color: #1c1c1c !important;
     }
     
     /* Custom Atmosphere Gradient Spotlights for Bento Counters */
@@ -233,7 +239,8 @@ with st.container(border=True):
         st.write("Refine core concepts into optimised forced-perspective templates.")
         user_input = st.text_input("Enter target product core:", placeholder="e.g., Luxury watch, premium sedan...", key="bento_prompt_input")
         
-        # FIXED: Use a permanent interactive text entry value monitor instead of a transient button press handler
-        if user_input:
-            st.write("---")
-            st.write("**Option A: 3D Pop-Out Effect (Forced Depth)**")
+        # RESTORED: Clean form integration to lock state values down without clearing memory loops
+        with st.form("prompt_engine_form"):
+            calc_button = st.form_submit_button("Calculate Spatial Weights")
+            
+            if calc_button:
