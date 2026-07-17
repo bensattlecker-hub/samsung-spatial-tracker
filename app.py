@@ -169,7 +169,7 @@ st.write("") # Vertical whitespace layout spacing
 # ----------------------------------------------------
 # Bento Grid Row 2: Main Production Row (3-Column Layout)
 # ----------------------------------------------------
-row2_col1, row2_col2, row2_col3 = st.columns([1, 2, 1])
+row2_col1, row2_col2, row2_col3 = st.columns(3)
 
 with row2_col1:
     # Tile A: Configuration Input Module
@@ -212,7 +212,7 @@ with row2_col2:
                 st.rerun()
 
 with row2_col3:
-    # Tile D: Media Verification (Moved up to top row!)
+    # Tile D: Media Verification
     with st.container(border=True):
         st.markdown('<div class="bento-title">🎞️ Media Preview</div>', unsafe_allow_html=True)
         st.write("Upload loop directly here:")
@@ -233,6 +233,11 @@ with st.container(border=True):
         st.write("Refine core concepts into optimised forced-perspective templates.")
         user_input = st.text_input("Enter target product core:", placeholder="e.g., Luxury watch, premium sedan...", key="bento_prompt_input")
         
+        # Initialize trigger flag in session state to handle text persistence smoothly
+        if "trigger_calc" not in st.session_state:
+            st.session_state.trigger_calc = False
+            
         if st.button("Calculate Spatial Weights"):
-            if user_input:
-                st.write("**Option A: 3D Pop-Out Effect (Forced Depth)**")
+            st.session_state.trigger_calc = True
+            
+        if st.session_state.trigger_calc and user_input:
