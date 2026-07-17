@@ -231,5 +231,4 @@ with row3_col1:
                 
                 **Option B: Ultra-Luxe Ambient Space**
                 > `Minimalist architectural space, central floating holographic {user_input} suspended in mid-air. Soft light refractions bouncing off glass surfaces, atmospheric dust motes catching golden light rays, hyper-photorealistic 8k, slow continuous camera push-in.`
-                """)
-            else:    
+                """) 
