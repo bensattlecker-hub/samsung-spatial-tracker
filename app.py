@@ -167,9 +167,9 @@ st.write("") # Vertical whitespace layout spacing
 
 
 # ----------------------------------------------------
-# Bento Grid Row 2: Main Operational Workspace Modules
+# Bento Grid Row 2: Main Production Row (3-Column Layout)
 # ----------------------------------------------------
-row2_col1, row2_col2 = st.columns(2) 
+row2_col1, row2_col2, row2_col3 = st.columns([1, 2, 1])
 
 with row2_col1:
     # Tile A: Configuration Input Module
@@ -211,23 +211,28 @@ with row2_col2:
                 save_persistent_data(edited_df)
                 st.rerun()
 
-
-# ----------------------------------------------------
-# Bento Grid Row 3: Generation Studios & Export Services
-# ----------------------------------------------------
-row3_col1, row3_col2 = st.columns(2) 
-
-with row3_col1:
-    # Tile C: Anamorphic Prompt Engine Studio
+with row2_col3:
+    # Tile D: Media Verification (Moved up to top row!)
     with st.container(border=True):
-        st.markdown('<div class="bento-title">✨ Anamorphic Prompt Engine</div>', unsafe_allow_html=True)
+        st.markdown('<div class="bento-title">🎞️ Media Preview</div>', unsafe_allow_html=True)
+        st.write("Upload loop directly here:")
+        uploaded_video = st.file_uploader("Drop test MP4 asset loop", type=["mp4", "mov"], label_visibility="collapsed")
+        if uploaded_video is not None:
+            st.video(uploaded_video)
+
+
+# ----------------------------------------------------
+# Bento Grid Row 3: Generation & Briefings Hub (Full Width layout)
+# ----------------------------------------------------
+with st.container(border=True):
+    st.markdown('<div class="bento-title">✨ Anamorphic Prompt Engine & Briefing Hub</div>', unsafe_allow_html=True)
+    
+    prompt_engine_col, brief_generator_col = st.columns(2)
+    
+    with prompt_engine_col:
         st.write("Refine core concepts into optimised forced-perspective templates.")
         user_input = st.text_input("Enter target product core:", placeholder="e.g., Luxury watch, premium sedan...", key="bento_prompt_input")
         
         if st.button("Calculate Spatial Weights"):
             if user_input:
                 st.write("**Option A: 3D Pop-Out Effect (Forced Depth)**")
-                prompt_a = f"Anamorphic forced perspective 3D render of a specialised {user_input}. Hyper-detailed textures, volumetric dramatic backlighting, dark infinity void backdrop. The object slowly rotates and drifts forward breaking the illusionary foreground screen boundary, extreme detail, depth map optimisation, shot on 35mm."
-                st.code(prompt_a, language="text")
-                
-                st.write("**Option B: Ultra-Luxe Ambient Space**")
