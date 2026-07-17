@@ -240,4 +240,6 @@ with st.container(border=True):
         if st.button("Calculate Spatial Weights"):
             st.session_state.trigger_calc = True
             
-        if st.session_state.trigger_calc and user_input:
+        if st.session_state.trigger_calc:
+            if user_input:
+                st.write("**Option A: 3D Pop-Out Effect (Forced Depth)**")
