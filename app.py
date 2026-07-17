@@ -240,6 +240,6 @@ with st.container(border=True):
         st.write("Refine core concepts into optimised forced-perspective templates.")
         user_input = st.text_input("Enter target product core:", placeholder="e.g., Luxury watch, premium sedan...", key="bento_prompt_input")
         
-        # FIXED: Clean, direct button click checking loop with zero nested forms or syntax traps
-        if st.button("Calculate Spatial Weights"):
+        calc_button = st.button("Calculate Spatial Weights")
+        if calc_button:
             if user_input:
