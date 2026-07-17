@@ -241,5 +241,3 @@ with st.container(border=True):
         user_input = st.text_input("Enter target product core:", placeholder="e.g., Luxury watch, premium sedan...", key="bento_prompt_input")
         
         calc_button = st.button("Calculate Spatial Weights")
-        if calc_button:
-            if user_input:
