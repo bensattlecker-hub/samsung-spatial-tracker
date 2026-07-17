@@ -113,8 +113,9 @@ st.markdown("""
     }
     
     /* FIX: Force Code Box Text to display crisp and bright blue */
-    code, pre, pre span {
+    code, pre, pre span, div[data-testid="stCodeBlock"] pre {
         color: #0099ff !important;
+        -webkit-text-fill-color: #0099ff !important;
         background-color: #1c1c1c !important;
     }
     
@@ -239,8 +240,6 @@ with st.container(border=True):
         st.write("Refine core concepts into optimised forced-perspective templates.")
         user_input = st.text_input("Enter target product core:", placeholder="e.g., Luxury watch, premium sedan...", key="bento_prompt_input")
         
-        # Track button click action cleanly using basic state management keys
-        if "prompt_calculated" not in st.session_state:
-            st.session_state.prompt_calculated = False
-            
-        calc_button = st.button("Calculate Spatial Weights")
+        # FIXED: Clean, direct button click checking loop with zero nested forms or syntax traps
+        if st.button("Calculate Spatial Weights"):
+            if user_input:
