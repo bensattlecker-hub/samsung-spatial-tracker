@@ -23,7 +23,6 @@ def load_persistent_data():
             return pd.read_csv(DB_FILE)
         except Exception:
             pass
-    # Return structure matching token expectations if file doesn't exist/fails
     return pd.DataFrame(columns=[
         "Project ID", "Project Name", "Target Display", "Prompt Concept", "Status", "Date Created"
     ])
@@ -170,7 +169,7 @@ st.write("") # Vertical whitespace layout spacing
 # ----------------------------------------------------
 # Bento Grid Row 2: Main Operational Workspace Modules
 # ----------------------------------------------------
-row2_col1, row2_col2 = st.columns([1, 2]) # 1/3 Content vs 2/3 Data Grid Structure layout configuration
+row2_col1, row2_col2 = st.columns() 
 
 with row2_col1:
     # Tile A: Configuration Input Module
@@ -192,27 +191,21 @@ with row2_col1:
                 "Target Display": display_type,
                 "Prompt Concept": raw_concept,
                 "Status": stage,
-                "Date Created": datetime.now().strftime("%d/%m/%Y") # en-AU standard local formatting
+                "Date Created": datetime.now().strftime("%d/%m/%Y") 
             }
-            # Append new record to tracking state array
             updated_df = pd.concat([st.session_state.pipeline_data, pd.DataFrame([new_entry])], ignore_index=True)
             st.session_state.pipeline_data = updated_df
-            
-            # Direct background sync operation to save data changes onto storage media
             save_persistent_data(updated_df)
             st.rerun()
 
 with row2_col2:
-    # Tile B: Centralized Data Processing Dashboard Block
+    # Tile B: Centralised Data Processing Dashboard Block
     with st.container(border=True):
         st.markdown('<div class="bento-title">Studio Production Data</div>', unsafe_allow_html=True)
         if st.session_state.pipeline_data.empty:
             st.info("Your canvas pipeline database is completely blank. Use the configuration module to deploy your first asset.")
         else:
-            # Inline modifications to status cells or strings inside the table layer
             edited_df = st.data_editor(st.session_state.pipeline_data, use_container_width=True, num_rows="dynamic")
-            
-            # Detect table alterations and trigger background data synchronization
             if not edited_df.equals(st.session_state.pipeline_data):
                 st.session_state.pipeline_data = edited_df
                 save_persistent_data(edited_df)
@@ -222,7 +215,7 @@ with row2_col2:
 # ----------------------------------------------------
 # Bento Grid Row 3: Generation Studios & Export Services
 # ----------------------------------------------------
-row3_col1, row3_col2 = st.columns([1.5, 1.5]) # Symmetrical bottom-row container splits
+row3_col1, row3_col2 = st.columns([1.5, 1.5]) 
 
 with row3_col1:
     # Tile C: Anamorphic Prompt Engine Studio
@@ -235,3 +228,11 @@ with row3_col1:
             if user_input:
                 st.markdown(f"""
                 **Option A: 3D Pop-Out Effect (Forced Depth)**
+                > `Anamorphic forced perspective 3D render of a specialised {user_input}. Hyper-detailed textures, volumetric dramatic backlighting, dark infinity void backdrop. The object slowly rotates and drifts forward breaking the illusionary foreground screen boundary, extreme detail, depth map optimisation, shot on 35mm.`
+                
+                **Option B: Ultra-Luxe Ambient Space**
+                > `Minimalist architectural space, central floating holographic {user_input} suspended in mid-air. Soft light refractions bouncing off glass surfaces, atmospheric dust motes catching golden light rays, hyper-photorealistic 8k, slow continuous camera push-in.`
+                """)
+            else:
+                st.warning("Please input a product concept first.")
+
