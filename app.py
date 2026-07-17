@@ -233,13 +233,7 @@ with st.container(border=True):
         st.write("Refine core concepts into optimised forced-perspective templates.")
         user_input = st.text_input("Enter target product core:", placeholder="e.g., Luxury watch, premium sedan...", key="bento_prompt_input")
         
-        # Initialize trigger flag in session state to handle text persistence smoothly
-        if "trigger_calc" not in st.session_state:
-            st.session_state.trigger_calc = False
-            
-        if st.button("Calculate Spatial Weights"):
-            st.session_state.trigger_calc = True
-            
-        if st.session_state.trigger_calc:
-            if user_input:
-                st.write("**Option A: 3D Pop-Out Effect (Forced Depth)**")
+        # FIXED: Use a permanent interactive text entry value monitor instead of a transient button press handler
+        if user_input:
+            st.write("---")
+            st.write("**Option A: 3D Pop-Out Effect (Forced Depth)**")
