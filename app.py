@@ -112,8 +112,8 @@ st.markdown("""
         width: auto !important;
     }
     
-    /* FIX: Force Code Box Text to display crisp and bright */
-    code, pre {
+    /* FIX: Force Code Box Text to display crisp and bright blue */
+    code, pre, pre span {
         color: #0099ff !important;
         background-color: #1c1c1c !important;
     }
@@ -239,7 +239,8 @@ with st.container(border=True):
         st.write("Refine core concepts into optimised forced-perspective templates.")
         user_input = st.text_input("Enter target product core:", placeholder="e.g., Luxury watch, premium sedan...", key="bento_prompt_input")
         
-        # RESTORED: Clean form integration to lock state values down without clearing memory loops
-        with st.form("prompt_engine_form"):
-            calc_button = st.form_submit_button("Calculate Spatial Weights")
-
+        # Track button click action cleanly using basic state management keys
+        if "prompt_calculated" not in st.session_state:
+            st.session_state.prompt_calculated = False
+            
+        calc_button = st.button("Calculate Spatial Weights")
