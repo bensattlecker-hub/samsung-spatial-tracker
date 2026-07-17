@@ -174,12 +174,13 @@ row2_col1, row2_col2 = st.columns(2)
 with row2_col1:
     # Tile A: Configuration Input Module
     with st.container(border=True):
-        st.markdown('<div class="bento-title">Configure Asset</div>', unsafe_allow_html=True)
+        st.markdown('<div class="bento-title">⚙️ Configure Asset</div>', unsafe_allow_html=True)
         with st.form("pipeline_form", clear_on_submit=True):
             proj_name = st.text_input("Project Name")
             display_type = st.selectbox("Target Hardware", ["The Wall (MicroLED)", "The Link (Modular LED)", "90° Anamorphic Corner Cube"])
             raw_concept = st.text_area("Core Asset Concept")
             stage = st.selectbox("Workflow State", ["1. Prompt Engineering", "2. Imagen 3 Render", "3. Veo 3.1 Animation", "4. Topaz Upscaling", "5. Live Demo Ready"])
+            
             submit = st.form_submit_button("Deploy to Artboard")
 
         if submit and proj_name:
@@ -200,7 +201,7 @@ with row2_col1:
 with row2_col2:
     # Tile B: Centralised Data Processing Dashboard Block
     with st.container(border=True):
-        st.markdown('<div class="bento-title">Studio Production Data</div>', unsafe_allow_html=True)
+        st.markdown('<div class="bento-title">📊 Studio Production Data</div>', unsafe_allow_html=True)
         if st.session_state.pipeline_data.empty:
             st.info("Your canvas pipeline database is completely blank. Use the configuration module to deploy your first asset.")
         else:
@@ -219,16 +220,14 @@ row3_col1, row3_col2 = st.columns(2)
 with row3_col1:
     # Tile C: Anamorphic Prompt Engine Studio
     with st.container(border=True):
-        st.markdown('<div class="bento-title">Anamorphic Prompt Engine</div>', unsafe_allow_html=True)
+        st.markdown('<div class="bento-title">✨ Anamorphic Prompt Engine</div>', unsafe_allow_html=True)
         st.write("Refine core concepts into optimised forced-perspective templates.")
         user_input = st.text_input("Enter target product core:", placeholder="e.g., Luxury watch, premium sedan...", key="bento_prompt_input")
         
         if st.button("Calculate Spatial Weights"):
             if user_input:
-                st.markdown(f"""
-                **Option A: 3D Pop-Out Effect (Forced Depth)**
-                > `Anamorphic forced perspective 3D render of a specialised {user_input}. Hyper-detailed textures, volumetric dramatic backlighting, dark infinity void backdrop. The object slowly rotates and drifts forward breaking the illusionary foreground screen boundary, extreme detail, depth map optimisation, shot on 35mm.`
+                st.write("**Option A: 3D Pop-Out Effect (Forced Depth)**")
+                prompt_a = f"Anamorphic forced perspective 3D render of a specialised {user_input}. Hyper-detailed textures, volumetric dramatic backlighting, dark infinity void backdrop. The object slowly rotates and drifts forward breaking the illusionary foreground screen boundary, extreme detail, depth map optimisation, shot on 35mm."
+                st.code(prompt_a, language="text")
                 
-                **Option B: Ultra-Luxe Ambient Space**
-                > `Minimalist architectural space, central floating holographic {user_input} suspended in mid-air. Soft light refractions bouncing off glass surfaces, atmospheric dust motes catching golden light rays, hyper-photorealistic 8k, slow continuous camera push-in.`
-                """) 
+                st.write("**Option B: Ultra-Luxe Ambient Space**")
