@@ -13,7 +13,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<p class="main-title">🖥️ Samsung <span class="samsung-blue">B2B Spatial Display</span> Content Hub</p>', unsafe_allowed_html=True)
+st.markdown('<p class="main-title">🖥️ Samsung <span class="samsung-blue">B2B Spatial Display</span> Content Hub</p>', unsafe_allow_html=True)
 st.caption("Your custom pipeline tracker, prompt optimizer, and client asset manager.")
 
 # Initialize data pipeline storage
