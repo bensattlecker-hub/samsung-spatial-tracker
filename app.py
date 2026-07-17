@@ -145,7 +145,7 @@ st.markdown('<div class="display-caption">Enterprise production pipeline and loc
 
 # Pre-calculate counts dynamically from synchronous tracking state
 total_demos = len(st.session_state.pipeline_data)
-ready_demos = len(st.session_state.pipeline_data[st.session_state.pipeline_data["Status"] == "5. Live Demo Ready"])
+ready_demos = len(st.session_state.pipeline_data[st.session_state.pipeline_data["Status"] == "5. Live Demo Ready"] if not st.session_state.pipeline_data.empty else [])
 active_production = total_demos - ready_demos
 
 
@@ -180,7 +180,6 @@ with row2_col1:
             display_type = st.selectbox("Target Hardware", ["The Wall (MicroLED)", "The Link (Modular LED)", "90° Anamorphic Corner Cube"])
             raw_concept = st.text_area("Core Asset Concept")
             stage = st.selectbox("Workflow State", ["1. Prompt Engineering", "2. Imagen 3 Render", "3. Veo 3.1 Animation", "4. Topaz Upscaling", "5. Live Demo Ready"])
-            
             submit = st.form_submit_button("Deploy to Artboard")
 
         if submit and proj_name:
@@ -234,6 +233,3 @@ with row3_col1:
                 > `Minimalist architectural space, central floating holographic {user_input} suspended in mid-air. Soft light refractions bouncing off glass surfaces, atmospheric dust motes catching golden light rays, hyper-photorealistic 8k, slow continuous camera push-in.`
                 """)
             else:
-                st.warning("Please input a product concept first.")
-
-                with row3_col2:
