@@ -11,7 +11,7 @@ st.markdown("""
     .main-title { font-size:42px !important; font-weight: 700; color: #0A1C2A; }
     .samsung-blue { color: #1428A0; font-weight: bold; }
     </style>
-""", unsafe_allowed_html=True)
+""", unsafe_allow_html=True)
 
 st.markdown('<p class="main-title">🖥️ Samsung <span class="samsung-blue">B2B Spatial Display</span> Content Hub</p>', unsafe_allowed_html=True)
 st.caption("Your custom pipeline tracker, prompt optimizer, and client asset manager.")
