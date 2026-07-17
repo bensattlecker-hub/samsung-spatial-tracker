@@ -169,8 +169,7 @@ st.write("") # Vertical whitespace layout spacing
 # ----------------------------------------------------
 # Bento Grid Row 2: Main Operational Workspace Modules
 # ----------------------------------------------------
-# FIXED: Passing [1, 2] configures explicit asymmetric column widths
-row2_col1, row2_col2 = st.columns([1, 2]) 
+row2_col1, row2_col2 = st.columns(2) 
 
 with row2_col1:
     # Tile A: Configuration Input Module
@@ -216,7 +215,7 @@ with row2_col2:
 # ----------------------------------------------------
 # Bento Grid Row 3: Generation Studios & Export Services
 # ----------------------------------------------------
-row3_col1, row3_col2 = st.columns([1, 1]) 
+row3_col1, row3_col2 = st.columns(2) 
 
 with row3_col1:
     # Tile C: Anamorphic Prompt Engine Studio
@@ -234,4 +233,7 @@ with row3_col1:
                 **Option B: Ultra-Luxe Ambient Space**
                 > `Minimalist architectural space, central floating holographic {user_input} suspended in mid-air. Soft light refractions bouncing off glass surfaces, atmospheric dust motes catching golden light rays, hyper-photorealistic 8k, slow continuous camera push-in.`
                 """)
-                else:
+            else:
+                st.warning("Please input a product concept first.")
+
+with row3_col2:
