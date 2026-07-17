@@ -242,5 +242,4 @@ with st.container(border=True):
         # RESTORED: Clean form integration to lock state values down without clearing memory loops
         with st.form("prompt_engine_form"):
             calc_button = st.form_submit_button("Calculate Spatial Weights")
-            
-            if calc_button:
+
